@@ -1,67 +1,14 @@
-// const {
-//   Controller,
-//   Get,
-//   Post,
-//   Put,
-//   Delete,
-//   Req,
-//   Res,
-// } = require('@nestjs/common');
-// const { JobsService } = require('./jobs.service');
-
-// @Controller('jobs')
-// class JobsController {
-//   constructor(jobsService) {
-//     this.jobsService = jobsService;
-//   }
-
-//   @Get()
-//   async getAll(req, res) {
-//     const query = req.query;
-//     const jobs = await this.jobsService.findAll(query);
-//     return res.json(jobs);
-//   }
-
-//   @Get(':id')
-//   async getOne(req, res) {
-//     const { id } = req.params;
-//     const job = await this.jobsService.findOne(id);
-//     if (job) return res.json(job);
-//     return res.status(404).json({ message: 'Job not found' });
-//   }
-
-//   @Post()
-//   async create(req, res) {
-//     const job = await this.jobsService.create(req.body);
-//     return res.status(201).json(job);
-//   }
-
-//   @Put(':id')
-//   async update(req, res) {
-//     const { id } = req.params;
-//     const updated = await this.jobsService.update(id, req.body);
-//     if (updated) return res.json(updated);
-//     return res.status(404).json({ message: 'Job not found' });
-//   }
-
-//   @Delete(':id')
-//   async remove(req, res) {
-//     const { id } = req.params;
-//     const deleted = await this.jobsService.delete(id);
-//     if (deleted) return res.json({ message: 'Job deleted' });
-//     return res.status(404).json({ message: 'Job not found' });
-//   }
-// }
-
-// module.exports = { JobsController };
 const {
   Controller,
   Get,
   Post,
   Put,
   Delete,
-  Req,
+  Body,
+  Query,
+  Param,
   Res,
+  HttpStatus,
 } = require('@nestjs/common');
 const { JobsService } = require('./jobs.service');
 
@@ -72,40 +19,37 @@ class JobsController {
   }
 
   @Get()
-  async getAll(req, res) {
-    const query = req.query;
+  async getAll(@Query() query, @Res() res) {
     const jobs = await this.jobsService.findAll(query);
-    return res.json(jobs);
+    return res.status(HttpStatus.OK).json(jobs);
   }
 
   @Get(':id')
-  async getOne(req, res) {
-    const { id } = req.params;
+  async getOne(@Param('id') id, @Res() res) {
     const job = await this.jobsService.findOne(id);
-    if (job) return res.json(job);
-    return res.status(404).json({ message: 'Job not found' });
+    if (job) return res.status(HttpStatus.OK).json(job);
+    return res.status(HttpStatus.NOT_FOUND).json({ message: 'Job not found' });
   }
 
   @Post()
-  async create(req, res) {
-    const job = await this.jobsService.create(req.body);
-    return res.status(201).json(job);
+  async create(@Body() body, @Res() res) {
+    const job = await this.jobsService.create(body);
+    return res.status(HttpStatus.CREATED).json(job);
   }
 
   @Put(':id')
-  async update(req, res) {
-    const { id } = req.params;
-    const updated = await this.jobsService.update(id, req.body);
-    if (updated) return res.json(updated);
-    return res.status(404).json({ message: 'Job not found' });
+  async update(@Param('id') id, @Body() body, @Res() res) {
+    const updated = await this.jobsService.update(id, body);
+    if (updated) return res.status(HttpStatus.OK).json(updated);
+    return res.status(HttpStatus.NOT_FOUND).json({ message: 'Job not found' });
   }
 
   @Delete(':id')
-  async remove(req, res) {
-    const { id } = req.params;
+  async remove(@Param('id') id, @Res() res) {
     const deleted = await this.jobsService.delete(id);
-    if (deleted) return res.json({ message: 'Job deleted' });
-    return res.status(404).json({ message: 'Job not found' });
+    if (deleted)
+      return res.status(HttpStatus.OK).json({ message: 'Job deleted' });
+    return res.status(HttpStatus.NOT_FOUND).json({ message: 'Job not found' });
   }
 }
 
