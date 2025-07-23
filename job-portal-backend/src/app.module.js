@@ -13,7 +13,7 @@
 //         url: configService.get('DATABASE_URL'),
 //         ssl: { rejectUnauthorized: false }, // needed for Render.com
 //         autoLoadEntities: true,
-//         synchronize: true, // disable in production
+//         synchronize: true,
 //       }),
 //       inject: [ConfigService],
 //     }),
@@ -24,11 +24,11 @@
 
 // module.exports = { AppModule };
 const { Module } = require('@nestjs/common');
-const { ConfigModule, ConfigService } = require('@nestjs/config');
+const { ConfigModule } = require('@nestjs/config');
 const { TypeOrmModule } = require('@nestjs/typeorm');
 const { JobsModule } = require('./jobs/jobs.module');
 
-@Module({
+const AppModule = Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
@@ -36,7 +36,7 @@ const { JobsModule } = require('./jobs/jobs.module');
       useFactory: (configService) => ({
         type: 'postgres',
         url: configService.get('DATABASE_URL'),
-        ssl: { rejectUnauthorized: false }, // needed for Render.com
+        ssl: { rejectUnauthorized: false },
         autoLoadEntities: true,
         synchronize: true,
       }),
@@ -44,7 +44,8 @@ const { JobsModule } = require('./jobs/jobs.module');
     }),
     JobsModule,
   ],
-})
-class AppModule {}
+  controllers: [],
+  providers: [],
+});
 
 module.exports = { AppModule };
