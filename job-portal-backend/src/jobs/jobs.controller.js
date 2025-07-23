@@ -16,13 +16,14 @@ class JobsController {
   }
 
   @Get()
-  async getAll(@Req() req, @Res() res) {
-    const jobs = await this.jobsService.findAll(req.query);
+  async getAll(req, res) {
+    const query = req.query;
+    const jobs = await this.jobsService.findAll(query);
     return res.json(jobs);
   }
 
   @Get(':id')
-  async getOne(@Req() req, @Res() res) {
+  async getOne(req, res) {
     const { id } = req.params;
     const job = await this.jobsService.findOne(id);
     if (job) return res.json(job);
@@ -30,13 +31,13 @@ class JobsController {
   }
 
   @Post()
-  async create(@Req() req, @Res() res) {
+  async create(req, res) {
     const job = await this.jobsService.create(req.body);
     return res.status(201).json(job);
   }
 
   @Put(':id')
-  async update(@Req() req, @Res() res) {
+  async update(req, res) {
     const { id } = req.params;
     const updated = await this.jobsService.update(id, req.body);
     if (updated) return res.json(updated);
@@ -44,7 +45,7 @@ class JobsController {
   }
 
   @Delete(':id')
-  async remove(@Req() req, @Res() res) {
+  async remove(req, res) {
     const { id } = req.params;
     const deleted = await this.jobsService.delete(id);
     if (deleted) return res.json({ message: 'Job deleted' });
