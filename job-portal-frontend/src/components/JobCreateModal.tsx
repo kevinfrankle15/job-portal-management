@@ -226,11 +226,14 @@ export const JobCreateModal = ({ isOpen, onClose, onJobCreated }: JobCreateModal
             variant="outline" 
             onClick={handleSaveDraft}
             disabled={isLoading}
-            className="flex-1 h-12 border-black text-black hover:bg-background gap-2"
+            className="flex-1 h-12 border-black text-black "
           >
             Save Draft
+            <div>
             <ChevronDown className="w-4 h-4" />
             <ChevronDown className="w-4 h-4 -ml-3" />
+            </div>
+
           </Button>
           <Button 
             onClick={handlePublish}
