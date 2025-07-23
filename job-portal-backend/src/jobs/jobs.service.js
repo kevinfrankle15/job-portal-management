@@ -205,19 +205,19 @@ class JobsService {
 
     const result = await db.query(
       `UPDATE jobs SET
-      title = $1,
-      company_name = $2,
-      location = $3,
-      job_type = $4,
-      salary_min = $5,
-      salary_max = $6,
-      description = $7,
-      application_deadline = $8,
-      requirements = $9,
-      responsibilities = $10,
-      updated_at = CURRENT_TIMESTAMP
-     WHERE id = $11
-     RETURNING *`,
+        title = $1,
+        company_name = $2,
+        location = $3,
+        job_type = $4,
+        salary_min = $5,
+        salary_max = $6,
+        description = $7,
+        application_deadline = $8,
+        requirements = $9,
+        responsibilities = $10,
+        updated_at = CURRENT_TIMESTAMP
+      WHERE id = $11
+      RETURNING *`,
       [
         title,
         company_name,
@@ -245,4 +245,4 @@ class JobsService {
   }
 }
 
-module.exports = { JobsService };
+module.exports = JobsService;
