@@ -71,10 +71,10 @@ export const SearchFilters = ({ onFiltersChange }: SearchFiltersProps) => {
               <SelectValue placeholder="Preferred Location" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="london">London</SelectItem>
-              <SelectItem value="manchester">Manchester</SelectItem>
-              <SelectItem value="birmingham">Birmingham</SelectItem>
-              <SelectItem value="remote">Remote</SelectItem>
+              <SelectItem value="london">Chennai</SelectItem>
+              <SelectItem value="manchester">Bangalore</SelectItem>
+              <SelectItem value="birmingham">Kerala</SelectItem>
+              <SelectItem value="remote">coimbatore</SelectItem>
               <SelectItem value="hybrid">Hybrid</SelectItem>
             </SelectContent>
           </Select>
