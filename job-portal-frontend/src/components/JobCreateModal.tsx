@@ -127,7 +127,7 @@ export const JobCreateModal = ({ isOpen, onClose, onJobCreated }: JobCreateModal
         placeholder="Full Stack Developer"
         value={formData.jobTitle}
         onChange={(e) => handleInputChange("jobTitle", e.target.value)}
-        className="bg-background ml-1 border border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 transition-colors duration-200"
+        className="bg-background ml-1 border border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 focus-visible:ring-0 transition-colors duration-200"
       />
     </div>
 
@@ -139,7 +139,7 @@ export const JobCreateModal = ({ isOpen, onClose, onJobCreated }: JobCreateModal
         placeholder="Amazon, Microsoft, Swiggy"
         value={formData.companyName}
         onChange={(e) => handleInputChange("companyName", e.target.value)}
-        className="bg-background ml-1 border border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 transition-colors duration-200"
+        className="bg-background ml-1 border border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 focus-visible:ring-0 transition-colors duration-200"
       />
     </div>
   </div>
@@ -149,7 +149,7 @@ export const JobCreateModal = ({ isOpen, onClose, onJobCreated }: JobCreateModal
     <div className="space-y-2">
       <Label htmlFor="location">Location</Label>
       <Select value={formData.location} onValueChange={(value) => handleInputChange("location", value)}>
-        <SelectTrigger className="bg-background ml-1 border border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 transition-colors duration-200">
+        <SelectTrigger className="bg-background ml-1 border border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 focus-visible:ring-0 transition-colors duration-200">
           <SelectValue placeholder="Choose Preferred Location" />
         </SelectTrigger>
         <SelectContent>
@@ -166,7 +166,7 @@ export const JobCreateModal = ({ isOpen, onClose, onJobCreated }: JobCreateModal
     <div className="space-y-2">
       <Label htmlFor="jobType">Job Type</Label>
       <Select value={formData.jobType} onValueChange={(value) => handleInputChange("jobType", value)}>
-        <SelectTrigger className="bg-background ml-1 border border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 transition-colors duration-200">
+        <SelectTrigger className="bg-background ml-1 border border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 focus-visible:ring-0 transition-colors duration-200">
           <SelectValue placeholder="FullTime" />
         </SelectTrigger>
         <SelectContent>
@@ -189,7 +189,7 @@ export const JobCreateModal = ({ isOpen, onClose, onJobCreated }: JobCreateModal
         placeholder="LT - 70"
         value={formData.salaryRange}
         onChange={(e) => handleInputChange("salaryRange", e.target.value)}
-        className="bg-background ml-1 border border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 transition-colors duration-200"
+        className="bg-background ml-1 border border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 focus-visible:ring-0 transition-colors duration-200"
       />
     </div>
 
@@ -202,7 +202,7 @@ export const JobCreateModal = ({ isOpen, onClose, onJobCreated }: JobCreateModal
         placeholder="LT 72,00,000"
         value={formData.applicationDeadline}
         onChange={(e) => handleInputChange("applicationDeadline", e.target.value)}
-        className="bg-background ml-1 border border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 transition-colors duration-200"
+        className="bg-background ml-1 border border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 focus-visible:ring-0 transition-colors duration-200"
       />
     </div>
   </div>
@@ -215,10 +215,11 @@ export const JobCreateModal = ({ isOpen, onClose, onJobCreated }: JobCreateModal
       placeholder="Please share a description to let the candidates know more about this job role"
       value={formData.jobDescription}
       onChange={(e) => handleInputChange("jobDescription", e.target.value)}
-      className="min-h-[120px] bg-background resize-none ml-1 border border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 transition-colors duration-200"
+      className="min-h-[120px] bg-background resize-none ml-1 border border-gray-300 hover:border-black focus:border-black focus:outline-none focus:ring-0 focus-visible:ring-0 transition-colors duration-200"
     />
   </div>
 </div>
+
         {/* Action Buttons - Fixed at bottom */}
         <div className="flex gap-3 pt-4 border-t bg-background">
 <Button

@@ -1,79 +1,73 @@
-const {
-  Controller,
-  Get,
-  Post,
-  Put,
-  Delete,
-  Param,
-  Query,
-  Body,
-  Res,
-} = require('@nestjs/common');
+const { Controller } = require('@nestjs/common');
+const { Request, Response } = require('express');
 
-@Controller('jobs')
 class JobsController {
   constructor(jobsService) {
     this.jobsService = jobsService;
   }
 
-  @Get()
-  async getAll(@Query() query, @Res() res) {
+  async getAll(req, res) {
     try {
-      const jobs = await this.jobsService.findAll(query);
-      return res.json(jobs);
+      const jobs = await this.jobsService.findAll(req.query);
+      res.json(jobs);
     } catch (err) {
-      return res.status(500).json({ error: err.message });
+      res.status(500).json({ error: err.message });
     }
   }
 
-  @Get(':id')
-  async getOne(@Param('id') id, @Res() res) {
+  async getOne(req, res) {
     try {
-      const job = await this.jobsService.findOne(id);
-      if (!job) {
-        return res.status(404).json({ message: 'Job not found' });
-      }
-      return res.json(job);
+      const job = await this.jobsService.findOne(req.params.id);
+      if (!job) return res.status(404).json({ message: 'Job not found' });
+      res.json(job);
     } catch (err) {
-      return res.status(500).json({ error: err.message });
+      res.status(500).json({ error: err.message });
     }
   }
 
-  @Post()
-  async create(@Body() body, @Res() res) {
+  async create(req, res) {
     try {
-      const job = await this.jobsService.create(body);
-      return res.status(201).json(job);
+      const job = await this.jobsService.create(req.body);
+      res.status(201).json(job);
     } catch (err) {
-      return res.status(500).json({ error: err.message });
+      res.status(500).json({ error: err.message });
     }
   }
 
-  @Put(':id')
-  async update(@Param('id') id, @Body() body, @Res() res) {
+  async update(req, res) {
     try {
-      const updated = await this.jobsService.update(id, body);
-      if (!updated) {
-        return res.status(404).json({ message: 'Job not found' });
-      }
-      return res.json(updated);
+      const job = await this.jobsService.update(req.params.id, req.body);
+      if (!job) return res.status(404).json({ message: 'Job not found' });
+      res.json(job);
     } catch (err) {
-      return res.status(500).json({ error: err.message });
+      res.status(500).json({ error: err.message });
     }
   }
 
-  @Delete(':id')
-  async remove(@Param('id') id, @Res() res) {
+  async remove(req, res) {
     try {
-      const deleted = await this.jobsService.delete(id);
-      if (!deleted) {
-        return res.status(404).json({ message: 'Job not found' });
-      }
-      return res.json({ message: 'Job deleted' });
+      const deleted = await this.jobsService.delete(req.params.id);
+      if (!deleted) return res.status(404).json({ message: 'Job not found' });
+      res.json({ message: 'Job deleted' });
     } catch (err) {
-      return res.status(500).json({ error: err.message });
+      res.status(500).json({ error: err.message });
     }
   }
 }
 
-module.exports = { JobsController };
+const { Router } = require('express');
+
+function createJobsController(jobsService) {
+  const controller = new JobsController(jobsService);
+  const router = Router();
+
+  router.get('/', controller.getAll.bind(controller));
+  router.get('/:id', controller.getOne.bind(controller));
+  router.post('/', controller.create.bind(controller));
+  router.put('/:id', controller.update.bind(controller));
+  router.delete('/:id', controller.remove.bind(controller));
+
+  return router;
+}
+
+module.exports = { JobsController, createJobsController };

@@ -11,12 +11,16 @@
 // module.exports = { JobsModule };
 const { Module } = require('@nestjs/common');
 const JobsService = require('./jobs.service');
-const { JobsController } = require('./jobs.controller');
+const { createJobsController } = require('./jobs.controller');
 
 @Module({
   providers: [JobsService],
-  controllers: [JobsController],
 })
-class JobsModule {}
+class JobsModule {
+  configure(consumer) {
+    const jobsService = new JobsService();
+    consumer.apply(createJobsController(jobsService)).forRoutes('jobs');
+  }
+}
 
 module.exports = { JobsModule };
