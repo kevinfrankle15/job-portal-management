@@ -124,9 +124,8 @@
 
 // module.exports = { JobsService };
 // const { Injectable } = require('@nestjs/common');
-const db = require('../db'); // Your existing DB client wrapper
+const db = require('../db');
 
-// @Injectable()
 class JobsService {
   async findAll(query) {
     let sql = 'SELECT * FROM jobs WHERE 1=1';

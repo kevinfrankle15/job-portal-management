@@ -24,11 +24,11 @@
 
 // module.exports = { AppModule };
 const { Module } = require('@nestjs/common');
-const { ConfigModule, ConfigService } = require('@nestjs/config'); // <- add ConfigService here
+const { ConfigModule, ConfigService } = require('@nestjs/config');
 const { TypeOrmModule } = require('@nestjs/typeorm');
 const { JobsModule } = require('./jobs/jobs.module');
 
-const AppModule = Module({
+@Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     TypeOrmModule.forRootAsync({
@@ -36,16 +36,15 @@ const AppModule = Module({
       useFactory: (configService) => ({
         type: 'postgres',
         url: configService.get('DATABASE_URL'),
-        ssl: { rejectUnauthorized: false }, // needed for Render.com
+        ssl: { rejectUnauthorized: false },
         autoLoadEntities: true,
         synchronize: true,
       }),
-      inject: [ConfigService], // <-- ConfigService must be imported
+      inject: [ConfigService],
     }),
     JobsModule,
   ],
-  controllers: [],
-  providers: [],
-});
+})
+class AppModule {}
 
 module.exports = { AppModule };

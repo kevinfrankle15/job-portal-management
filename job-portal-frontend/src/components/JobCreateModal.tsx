@@ -118,107 +118,108 @@ export const JobCreateModal = ({ isOpen, onClose, onJobCreated }: JobCreateModal
         </DialogHeader>
         
         <div className="space-y-6 py-4 px-2">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Job Title */}
-            <div className="space-y-2">
-              <Label htmlFor="jobTitle">Job Title</Label>
-              <Input
-                id="jobTitle"
-                placeholder="Full Stack Develo"
-                value={formData.jobTitle}
-                onChange={(e) => handleInputChange("jobTitle", e.target.value)}
-                className="bg-background ml-1"
-              />
-            </div>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {/* Job Title */}
+    <div className="space-y-2">
+      <Label htmlFor="jobTitle">Job Title</Label>
+      <Input
+        id="jobTitle"
+        placeholder="Full Stack Developer"
+        value={formData.jobTitle}
+        onChange={(e) => handleInputChange("jobTitle", e.target.value)}
+        className="bg-background ml-1 border border-gray-300 hover:border-black transition-colors duration-200"
+      />
+    </div>
 
-            {/* Company Name */}
-            <div className="space-y-2">
-              <Label htmlFor="companyName">Company Name</Label>
-              <Input
-                id="companyName"
-                placeholder="Amazon, Microsoft, Swiggy"
-                value={formData.companyName}
-                onChange={(e) => handleInputChange("companyName", e.target.value)}
-                className="bg-background ml-1"
-              />
-            </div>
-          </div>
+    {/* Company Name */}
+    <div className="space-y-2">
+      <Label htmlFor="companyName">Company Name</Label>
+      <Input
+        id="companyName"
+        placeholder="Amazon, Microsoft, Swiggy"
+        value={formData.companyName}
+        onChange={(e) => handleInputChange("companyName", e.target.value)}
+        className="bg-background ml-1 border border-gray-300 hover:border-black transition-colors duration-200"
+      />
+    </div>
+  </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Location */}
-            <div className="space-y-2">
-              <Label htmlFor="location">Location</Label>
-              <Select value={formData.location} onValueChange={(value) => handleInputChange("location", value)}>
-                <SelectTrigger className="bg-background ml-1">
-                  <SelectValue placeholder="Choose Preferred Location" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="london">London</SelectItem>
-                  <SelectItem value="manchester">Manchester</SelectItem>
-                  <SelectItem value="birmingham">Birmingham</SelectItem>
-                  <SelectItem value="remote">Remote</SelectItem>
-                  <SelectItem value="hybrid">Hybrid</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {/* Location */}
+    <div className="space-y-2">
+      <Label htmlFor="location">Location</Label>
+      <Select value={formData.location} onValueChange={(value) => handleInputChange("location", value)}>
+        <SelectTrigger className="bg-background ml-1 border border-gray-300 hover:border-black transition-colors duration-200">
+          <SelectValue placeholder="Choose Preferred Location" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="london">London</SelectItem>
+          <SelectItem value="manchester">Manchester</SelectItem>
+          <SelectItem value="birmingham">Birmingham</SelectItem>
+          <SelectItem value="remote">Remote</SelectItem>
+          <SelectItem value="hybrid">Hybrid</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
 
-            {/* Job Type */}
-            <div className="space-y-2">
-              <Label htmlFor="jobType">Job Type</Label>
-              <Select value={formData.jobType} onValueChange={(value) => handleInputChange("jobType", value)}>
-                <SelectTrigger className="bg-background ml-1">
-                  <SelectValue placeholder="FullTime" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="full-time">Full Time</SelectItem>
-                  <SelectItem value="part-time">Part Time</SelectItem>
-                  <SelectItem value="contract">Contract</SelectItem>
-                  <SelectItem value="freelance">Freelance</SelectItem>
-                  <SelectItem value="internship">Internship</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-          </div>
+    {/* Job Type */}
+    <div className="space-y-2">
+      <Label htmlFor="jobType">Job Type</Label>
+      <Select value={formData.jobType} onValueChange={(value) => handleInputChange("jobType", value)}>
+        <SelectTrigger className="bg-background ml-1 border border-gray-300 hover:border-black transition-colors duration-200">
+          <SelectValue placeholder="FullTime" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="full-time">Full Time</SelectItem>
+          <SelectItem value="part-time">Part Time</SelectItem>
+          <SelectItem value="contract">Contract</SelectItem>
+          <SelectItem value="freelance">Freelance</SelectItem>
+          <SelectItem value="internship">Internship</SelectItem>
+        </SelectContent>
+      </Select>
+    </div>
+  </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {/* Salary Range */}
-            <div className="space-y-2">
-              <Label htmlFor="salaryRange">Salary Range</Label>
-              <Input
-                id="salaryRange"
-                placeholder="LT - 70"
-                value={formData.salaryRange}
-                onChange={(e) => handleInputChange("salaryRange", e.target.value)}
-                className="bg-background ml-1"
-              />
-            </div>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {/* Salary Range */}
+    <div className="space-y-2">
+      <Label htmlFor="salaryRange">Salary Range</Label>
+      <Input
+        id="salaryRange"
+        placeholder="LT - 70"
+        value={formData.salaryRange}
+        onChange={(e) => handleInputChange("salaryRange", e.target.value)}
+        className="bg-background ml-1 border border-gray-300 hover:border-black transition-colors duration-200"
+      />
+    </div>
 
-            {/* Application Deadline */}
-            <div className="space-y-2">
-              <Label htmlFor="applicationDeadline">Application Deadline</Label>
-              <Input
-                id="applicationDeadline"
-                type="date"
-                placeholder="LT 72,00,000"
-                value={formData.applicationDeadline}
-                onChange={(e) => handleInputChange("applicationDeadline", e.target.value)}
-                className="bg-background ml-1"
-              />
-            </div>
-          </div>
+    {/* Application Deadline */}
+    <div className="space-y-2">
+      <Label htmlFor="applicationDeadline">Application Deadline</Label>
+      <Input
+        id="applicationDeadline"
+        type="date"
+        placeholder="LT 72,00,000"
+        value={formData.applicationDeadline}
+        onChange={(e) => handleInputChange("applicationDeadline", e.target.value)}
+        className="bg-background ml-1 border border-gray-300 hover:border-black transition-colors duration-200"
+      />
+    </div>
+  </div>
 
-          {/* Job Description */}
-          <div className="space-y-2">
-            <Label htmlFor="jobDescription">Job Description</Label>
-            <Textarea
-              id="jobDescription"
-              placeholder="Please share a description to let the candidates know more about this job role"
-              value={formData.jobDescription}
-              onChange={(e) => handleInputChange("jobDescription", e.target.value)}
-              className="min-h-[120px] bg-background resize-none ml-1"
-            />
-          </div>
-        </div>
+  {/* Job Description */}
+  <div className="space-y-2">
+    <Label htmlFor="jobDescription">Job Description</Label>
+    <Textarea
+      id="jobDescription"
+      placeholder="Please share a description to let the candidates know more about this job role"
+      value={formData.jobDescription}
+      onChange={(e) => handleInputChange("jobDescription", e.target.value)}
+      className="min-h-[120px] bg-background resize-none ml-1 border border-gray-300 hover:border-black transition-colors duration-200"
+    />
+  </div>
+</div>
+
 
         {/* Action Buttons - Fixed at bottom */}
         <div className="flex gap-3 pt-4 border-t bg-background">
