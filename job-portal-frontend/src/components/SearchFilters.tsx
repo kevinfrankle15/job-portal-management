@@ -107,7 +107,7 @@ export const SearchFilters = ({ onFiltersChange }: SearchFiltersProps) => {
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <span>£{salaryRange[0]}k</span>
               <span>-</span>
-              <span>£{salaryRange[1]}k</span>
+              <span>{salaryRange[1]}k</span>
             </div>
           </div>
           
