@@ -62,13 +62,12 @@ const {
   Delete,
   Req,
   Res,
-  Inject,
 } = require('@nestjs/common');
 const { JobsService } = require('./jobs.service');
 
 @Controller('jobs')
 class JobsController {
-  constructor(@Inject(JobsService) jobsService) {
+  constructor(jobsService) {
     this.jobsService = jobsService;
   }
 
