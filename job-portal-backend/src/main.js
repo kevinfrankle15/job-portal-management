@@ -9,30 +9,32 @@
 //   await app.listen(3000);
 // }
 // bootstrap();
+const express = require('express');
 const { NestFactory } = require('@nestjs/core');
 const { AppModule } = require('./app.module');
-const express = require('express');
+const { AppService } = require('./app.service');
+const { AppController } = require('./app.controller');
+const { JobsService } = require('./jobs/jobs.service');
+const { JobsController } = require('./jobs/jobs.controller');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
   app.enableCors();
 
-  // Get raw Express instance to mount your routers manually
   const expressApp = app.getHttpAdapter().getInstance();
-
   expressApp.use(express.json());
 
-  // Import service and controller, instantiate, and mount the router
-  const { JobsService } = require('./jobs.service');
-  const { JobsController } = require('./jobs.controller');
+  // App route
+  const appService = new AppService();
+  const appController = new AppController(appService);
+  expressApp.get('/', appController.getHello.bind(appController));
 
+  // Jobs route
   const jobsService = new JobsService();
   const jobsController = new JobsController(jobsService);
-
   expressApp.use('/jobs', jobsController.router);
 
   await app.listen(3000);
-  console.log('Server started on http://localhost:3000');
+  console.log('Server running at http://localhost:3000');
 }
 bootstrap();

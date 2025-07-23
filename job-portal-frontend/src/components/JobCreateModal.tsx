@@ -222,19 +222,19 @@ export const JobCreateModal = ({ isOpen, onClose, onJobCreated }: JobCreateModal
 
         {/* Action Buttons - Fixed at bottom */}
         <div className="flex gap-3 pt-4 border-t bg-background">
-          <Button 
-            variant="outline" 
-            onClick={handleSaveDraft}
-            disabled={isLoading}
-            className="flex-1 h-12 border-black text-black "
-          >
-            Save Draft
-            <div>
-            <ChevronDown className="w-4 h-4" />
-            <ChevronDown className="w-4 h-4 -ml-3" />
-            </div>
+<Button
+  variant="outline"
+  onClick={handleSaveDraft}
+  disabled={isLoading}
+  className="flex-1 h-12 border-black text-black hover:bg-transparent hover:text-black cursor-pointer"
+>
+  Save Draft
+  <div className="flex flex-col items-center justify-center ml-2">
+    <ChevronDown className="w-4 h-4" />
+    <ChevronDown className="w-4 h-4 -mt-1" />
+  </div>
+</Button>
 
-          </Button>
           <Button 
             onClick={handlePublish}
             disabled={isLoading}
